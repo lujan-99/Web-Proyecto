@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'Wild Wolf';
+    src: url('../fonts/Wild-Wolf.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Normal';
+    src: url('../fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+#logo{
+    width: 150px;
+    height:150px;
+    /* margin: 0 auto; */
+}
+
+#contenedor{
+    
+    
+    padding-top: 200px;
+    display: flex;
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
+
+}
+    
+#texto-logo{
+    color: rgb(8, 230, 219);;
+    padding: 20px;
+    font-family: 'Wild Wolf', sans-serif;
+    font-size: 64px;
+    text-align: center;
+    margin-top: 10px;
+}
+#textos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+#texto-complementario{
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+a {
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+
+#boton {
+    width: 150px;
+    background-color: rgb(8, 230, 219);
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 24px;
+    /* font-weight: bold; */
+    text-align: center;
+    font-family: 'Normal';
+    margin: 10px auto; /* Auto margenes horizontales para centrar */
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+}
