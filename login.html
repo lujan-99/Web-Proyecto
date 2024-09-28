@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido al Censso 2024</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="js/login.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="caja-login">
-        <form action="includes/autenticar.php" method="post">
+        <form id="login-form" onsubmit="login(); return false;">
             <div id="titulo">
-                <h1>Inicio de Sesion</h1>
+                <h1>Inicio de Sesión</h1>
             </div>
             <div class="entradas">
-                <label for="Nombre Usuario">Correo Electronico</label><br>
-                <input type="text" name="nombre" >
+                <label for="Nombre Usuario">Usuario</label><br>
+                <input type="text" name="nombre" id="user" required>
             </div>
             <div class="entradas">
-                <label for="contrasena">Constraseña</label><br>
-                <input type="password" name="contrasena" >
+                <label for="contrasena">Contraseña</label><br>
+                <input type="password" name="contrasena" id="password" required>
+            </div>
+            <div id="mensaje">
+                <!-- Aquí se mostrará el mensaje de error -->
             </div>
             <!-- botones -->
             <div id="botones">
@@ -26,6 +30,11 @@
                 <input type="reset" value="LIMPIAR" class="boton">
             </div>
         </form>
+        
+        
+        
+        
+        
     </div>
     
 

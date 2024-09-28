@@ -42,8 +42,8 @@ body {
 }
 
 #nombre-usuario {
-    font-family: 'Normal';
-    font-size: 32px;
+    font-family: 'Wild Wolf';
+    font-size: 48px;
     /* font-weight: bold; */
     color: rgb(255, 255, 255);
     margin: 15px;
@@ -68,7 +68,8 @@ body {
 }
 
 .opcion-menu {
-    background-color: rgb(8, 230, 219);
+    color: rgb(8, 230, 219);
+    background-color: black;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -115,9 +116,10 @@ body {
 }
 
 .datos-usuarios {
-    background-color: #dffff5;
+    color: white;
+    /* background-color: #e3e3e3; */
     border-radius: 10px;
-    border: 2px solid rgb(8, 230, 219);
+    border: 2px solid rgb(0, 152, 144);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -132,30 +134,292 @@ body {
     margin-right: 15px;
 }
 
-table {
-    color: white;
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0px;
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-}
-
-th {
-    background-color: #000000;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    font-weight: bold;
-}
-
-td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
 
 a {
     text-decoration: none;
     color: rgb(255, 18, 18);
+}
+
+/* =========================== */
+.usuarios-vencimiento {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* Ajusta los elementos uniformemente */
+    background-color: #333333a9;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+}
+
+.renovacion-nombre {
+    font-size: 24px;
+    margin-right: auto; /* Asegura que todo el espacio se empuje hacia el botón */
+    color: lime;
+}
+
+.renovacion-fecha {
+    font-family: "Normal";
+    margin: 5px 20px 0 10px;  /* Ajuste del margen para controlar el espacio */
+    font-size: 24px;
+}
+
+.boton-renovacion {
+    background-color: #0f0;
+    margin-right: 10px; /* Reduce el margen derecho para acercar al borde */
+    padding: 10px 20px;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+#Contenido_pagian{
+    display: flex; 
+    flex-direction: row;
+}
+
+
+
+
+
+
+.contenedor_clientes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+}
+
+.lado_izquierdo_clientes {
+    width: 40%; /* Ajustado a 40% */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lado_derecho_clientes {
+    width: 100%; /* Ajustado a 60% */
+    padding: 20px;
+}
+table {
+    border-radius: 8px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+    /* centreamos el texto */
+    
+}
+
+table, th, td {
+    border: 1px solid #cccccc; /* Cambiamos el color del borde a un gris más suave */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+ 
+}
+
+th {
+    background-color: #08e6d1; /* Un color de fondo más fresco y suave para los encabezados */
+    color: black; /* Texto en negro para mejor contraste */
+}
+
+tr {
+    color: white;
+    cursor: pointer; /* Mantiene el cursor como indicativo de interacción */
+}
+
+.busqueda_container_clientes {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#buscar_ci_clientes {
+    border-radius: 8px;
+    font-family: 'Normal';
+    background-color: #ffffff38;
+    padding: 10px;
+    font-size: 20px;
+    width: 250px;
+    color: rgb(8, 230, 219);
+}
+
+.filtros_clientes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.filtro_cuadro_clientes {
+    /* background-color: #a34b4b; */
+    color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+}
+.accion_boton{
+    background-color: rgba(255, 0, 0, 0);
+}
+button{
+    cursor: pointer;
+    border: rgb(8, 230, 219);
+    border-radius: 8px;
+    font-family:'Wild Wolf';
+    background-color: rgb(8, 230, 219);
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 24px;
+    width: 150px;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+form {
+    border: white;
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    width: 300px; /* Ancho fijo para el formulario */
+    margin: auto; /* Centrar el formulario horizontalmente */
+}
+label {
+    color: rgb(8, 230, 219);;
+    margin-top: 10px; /* Espacio antes de cada etiqueta */
+    display: block; /* Hacer que las etiquetas sean en bloque para mejor alineación */
+}
+input {
+    color: white; /* Texto blanco en los inputs */
+    background-color: rgb(77, 70, 70);;
+    width: 80%; /* Ancho completo para aprovechar el espacio */
+    padding: 8px;
+    margin-top: 5px; /* Espacio superior para separar de la etiqueta */
+    border: 2px rgb(8, 230, 219);/* Bordes sutiles */
+    border-radius: 4px; /* Bordes redondeados para los inputs */
+}
+input[type="submit"] {
+    background-color: rgb(8, 230, 219);/* Color azul para el botón enviar */
+    color: rgb(0, 0, 0); /* Texto blanco en el botón */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Relleno para el botón */
+    border-radius: 5px; /* Bordes redondeados para el botón */
+    cursor: pointer; /* Cursor de mano al pasar el mouse */
+    margin-top: 20px; /* Espacio antes del botón */
+    width: 100%; /* Ancho completo */
+}
+
+.acciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* los ponemos en columna  */
+    flex-direction: row;
+}
+.accion_boton{
+    width: 60px;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgba(255, 0, 0, 0);
+}
+.sin_nada{
+    padding: 0%;
+    margin: 0%;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.buttons-container_suscripcion {
+    display: flex;
+    width: 100%; /* Ancho completo para los botones */
+    
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Alinea los botones verticalmente en el centro */
+/* Altura total de la ventana para centrar verticalmente */
+    padding-top: 150px; /* Espacio alrededor del contenedor para evitar que los elementos toquen los bordes */
+}
+
+.button_suscripcion {
+    color: white;
+    display: flex;
+    flex-direction: column; /* Organiza el contenido en columna */
+    align-items: center; /* Centra los elementos de cada botón */
+    cursor: pointer;
+    margin: 10px; /* Margen alrededor de cada botón para asegurar espacio entre ellos */
+    text-align: center;
+    border: 2px solid #08e6d1; /* Borde visible */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 200px; /* Ancho fijo para mayor tamaño */
+    height: 200px; /* Altura fija para mantener proporción y tamaño uniforme */
+    padding: 10px; /* Espacio interno para no tocar los bordes */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Sombra suave para resaltar */
+}
+
+.image_suscripcion {
+    width: 120px; /* Ajuste del tamaño de la imagen dentro del botón */
+    height: auto; /* Altura automática para mantener la proporción */
+    margin-bottom: 5px; /* Espacio entre la imagen y el texto */
+}
+
+.text_suscripcion {
+    color: rgb(255, 255, 255); /* Color del texto */
+    font-size: 32px;
+    font-family: "Wild Wolf"; /* Tamaño del texto */
+}
+
+
+
+.container_nuevo_suscripcion {
+    display: flex;
+    flex-direction: row;
+    /* Esto hace que el contenedor ocupe todo el alto de la ventana */
+    width: 100%; /* Esto hace que el contenedor ocupe todo el ancho disponible */
+}
+
+.row_nuevo_suscripcion {
+    flex: 1; /* Cada fila ocupa una fracción igual del espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    border: 1px solid #ccc; /* Añade un borde para visualizar cada fila */
+    padding: 20px; /* Añade algo de espacio dentro de cada fila */
+    box-sizing: border-box; /* Incluye el padding y el borde en la altura y anchura del elemento */
+}
+
+
+select {
+    background-color: rgb(8, 230, 219); /* Color azul claro para el fondo */
+    color: rgb(0, 0, 0); /* Texto en negro */
+    border: 2px solid #ccc; /* Bordes en gris claro */
+    padding: 10px; /* Relleno interno para el select */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano al pasar el mouse */
+    margin-top: 20px; /* Espacio antes del select */
+    width: 100%; /* Ancho completo para ocupar el contenedor */
 }
