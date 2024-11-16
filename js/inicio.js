@@ -710,6 +710,10 @@ function nuevaInscripcionCliente() {
             // Manejar la respuesta del servidor
             alert('Suscripción añadida exitosamente');
             console.log(ajax.responseText); // Imprimir la respuesta para depuración
+            // var oh0hh = document.getElementById('inscripcionDatos');
+            // seleccionar(oh0hh);
+            cargar('pantalla_inscripciones.php');
+    
         }
     };
 
@@ -770,6 +774,7 @@ function editarPlan(id_plan) {
                     <input type="number" id="duracion" name="duracion" value="${plan.duracion}" required><br>
 
                     <label for="imagen">Imagen del Plan:</label>
+                    <img src="http://localhost/Web-Proyecto/img/pagina/${plan.imagen}" alt="Imagen del plan" style="width: 200px;"><br>
                     <input type="file" id="imagen" name="imagen"><br>
                     <small>Deja la imagen vacía si no deseas cambiarla</small><br>
 
