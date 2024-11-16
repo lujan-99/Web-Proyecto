@@ -1,5 +1,5 @@
 var seleccionado = document.getElementById("inicio");  // Variable para almacenar el elemento seleccionado
-
+var filtro = null;
 function cargar(url) {
     var ajax = new XMLHttpRequest();  // Crear el objeto XMLHttpRequest
     console.log("Cargando página: " + url);
@@ -49,8 +49,6 @@ function seleccionar(element) {
 // Selecciona el elemento 'inicio' por defecto al cargar la página
 seleccionar(seleccionado);
 
-// Clientes
-//-------------------------------------------------------------
 function mostrarClientes() {
     var contenido = document.getElementById('tabla_clientes_contenedor');
     var ajax = new XMLHttpRequest();
@@ -68,6 +66,7 @@ function mostrarClientes() {
                             <th>CI</th>
                             <th>Fecha de Registro</th>
                             <th>Días Restantes</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -81,6 +80,13 @@ function mostrarClientes() {
                     <td>${cliente.ci}</td>
                     <td>${cliente.fecha_registro}</td>
                     <td>${cliente.dias_restantes}</td>
+                    <td>
+                        <input 
+                            type="checkbox" 
+                            ${cliente.estado === "activo" ? "checked" : ""} 
+                            onchange="activarCliente(${cliente.id_cliente})"
+                        >
+                    </td>
                     <td class="acciones">
                         <button class="accion_boton" onclick="cargarFormularioEdicion(${cliente.id_cliente})">
                             <img src="img/pagina/editar.png" alt="Editar" style="width: 24px; height: 24px;">
@@ -98,6 +104,7 @@ function mostrarClientes() {
     };
     ajax.send();
 }
+
 
 
 function cargarFormularioEdicion(id) {
@@ -152,7 +159,7 @@ function eliminarUsuario(id) {
 
 }
 
-function escribirTecla() {
+function escribirTecla(event) {
     // Recuperar el div donde se escribirán los resultados
     var edicion = document.getElementById('edicion');
 
@@ -161,6 +168,13 @@ function escribirTecla() {
 
     // Recuperar el texto actual ingresado en el input
     var inputValue = document.getElementById('buscar_ci_clientes').value;
+
+    // Detectar si se presionó la tecla Enter
+    if (event.key === "Enter") {
+        console.log("Se presionó Enter, ejecutando buscarCliente().");
+        buscarCliente(); // Llamar a la función buscarCliente
+        return; // Salir de la función para evitar más procesamiento
+    }
 
     // Detectar si el input está vacío
     if (!inputValue.trim()) {
@@ -215,6 +229,7 @@ function escribirTecla() {
 }
 
 
+
 function seleccionadoPrediccion(id_cliente, ci) {
     // Mostrar los valores seleccionados en la consola (opcional)
     console.log("Cliente seleccionado:");
@@ -267,6 +282,7 @@ function buscarCliente() {
                             <th>CI</th>
                             <th>Fecha de Registro</th>
                             <th>Días Restantes</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -280,6 +296,13 @@ function buscarCliente() {
                     <td>${cliente.ci}</td>
                     <td>${cliente.fecha_registro}</td>
                     <td>${cliente.dias_restantes}</td>
+                    <td>
+                        <input 
+                            type="checkbox" 
+                            ${cliente.estado === "activo" ? "checked" : ""} 
+                            onchange="activarCliente(${cliente.id_cliente})"
+                        >
+                    </td>
                     <td class="acciones">
                         <button class="accion_boton" onclick="cargarFormularioEdicion(${cliente.id_cliente})">
                             <img src="img/pagina/editar.png" alt="Editar" style="width: 24px; height: 24px;">
@@ -299,20 +322,19 @@ function buscarCliente() {
     ajax.send(); // Enviar la solicitud AJAX
 }
 
-
 function flitroCliente(numero) {
     seleccionarFiltro(numero);
-    if(numero === 4) {
+    if (numero === 4) {
         // Si es 4, entonces mostrar todos los clientes
         mostrarClientes();
-    } else if(numero) {
+    } else if (numero) {
         // Si no es 4, procesar con el filtro
         console.log(numero);
         var ajax = new XMLHttpRequest();
         ajax.open("GET", "includes/clientes_consulta.php?numero=" + numero, true);
 
         // Definir la función que se ejecutará cuando el estado de la solicitud cambie
-        ajax.onreadystatechange = function() {
+        ajax.onreadystatechange = function () {
             if (ajax.readyState == 4 && ajax.status == 200) {
                 var clientes = JSON.parse(ajax.responseText);
                 var html = `
@@ -324,6 +346,7 @@ function flitroCliente(numero) {
                                 <th>CI</th>
                                 <th>Fecha de Registro</th>
                                 <th>Días Restantes</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -337,6 +360,13 @@ function flitroCliente(numero) {
                         <td>${cliente.ci}</td>
                         <td>${cliente.fecha_registro}</td>
                         <td>${cliente.dias_restantes}</td>
+                        <td>
+                            <input 
+                                type="checkbox" 
+                                ${cliente.estado === "activo" ? "checked" : ""} 
+                                onchange="activarCliente(${cliente.id_cliente})"
+                            >
+                        </td>
                         <td class="acciones">
                             <button class="accion_boton" onclick="cargarFormularioEdicion(${cliente.id_cliente})">
                                 <img src="img/pagina/editar.png" alt="Editar" style="width: 24px; height: 24px;">
@@ -355,7 +385,8 @@ function flitroCliente(numero) {
         ajax.send();  // Enviar la solicitud AJAX
     }
 }
- var filtro = null;  // Variable para almacenar el filtro seleccionado
+
+  // Variable para almacenar el filtro seleccionado
 function seleccionarFiltro(numero_filtro) {
     // Deselecciona el elemento previamente seleccionado
     if (filtro != null) {
@@ -835,4 +866,79 @@ function insertarNuevoPlan() {
 
 
 
+function activarCliente(id_cliente) {
+    var ajax = new XMLHttpRequest();
+    ajax.open("POST", "includes/actualizar_estado_cliente.php", true);
+    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+    // Obtener el estado actual del checkbox
+    var checkbox = event.target;
+    var estado = checkbox.checked ? "activo" : "inactivo";
+
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            console.log(`Estado del cliente ${id_cliente} actualizado a: ${estado}`);
+        }
+    };
+
+    // Enviar el ID del cliente y el nuevo estado al servidor
+    ajax.send(`id_cliente=${id_cliente}&estado=${estado}`);
+}
+
+
+function mostrarClientesActivos() {
+
+}
+
+
+function verGananciasTotales() {
+    var ohh = document.getElementById('pagos_pagina');
+    seleccionar(ohh);
+    cargar('pantalla_pagos.php');
+}
+function verUsuariosActivos() {
+    var ohhh = document.getElementById('clientes_carga_pagina');
+    seleccionar(ohhh);
+    cargar('pantalla_clientes.php');
+    flitroCliente(1);
+
+    setTimeout(function() {
+        seleccionarFiltro(1);
+    }, 10);
+    
+
+}
+
+function verUsuariosTotales() {
+    var ohhh = document.getElementById('clientes_carga_pagina');
+    seleccionar(ohhh);
+    cargar('pantalla_clientes.php');
+    
+
+    setTimeout(function() {
+        mostrarClientes();
+        seleccionarFiltro(4);
+    }, 10);
+    
+
+}
+
+function renovacionDirecta(ci_cliente) {
+    var ohhh = document.getElementById('inscripcionDatos');
+    seleccionar(ohhh);
+    cargar('pantalla_inscripciones.php');
+    
+
+    setTimeout(function() {
+        RenovarSuscripcion();
+    }, 10);
+
+    console.log(ci_cliente);
+    setTimeout(function() {
+        var temporsa12= document.getElementById('buscar_id');
+        temporsa12.value = ci_cliente;
+        buscarClienteRenovacion();
+    }, 100);
+    
+
+}

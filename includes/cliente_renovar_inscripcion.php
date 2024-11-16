@@ -5,7 +5,7 @@
         <div id="Info_Renovacion">
         <button class= "cancelar" onclick= "cargar('pantalla_inscripciones.php')"> Cancelar </button>
         <button id="buscar-largo" onclick="buscarClienteRenovacion()">Buscar:</button>
-        <input style=" width: 95%; height: 30px;" type="number" id="buscar_id" name="buscar" oninput="autocompletarClienteRenovacion(event)"><br>
+        <input style=" width: 95%; height: 30px;" type="text" id="buscar_id" name="buscar" oninput="autocompletarClienteRenovacion(event)"><br>
         <div id="edicion"></div>
         </div>
         <!-- Reemplazado el formulario por un checkbox -->

@@ -29,9 +29,9 @@
 
         <div id="nav">
             <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_inicio.php')" id="inicio">Inicio</div>
-            <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_clientes.php');">Clientes</div>
-            <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_inscripciones.php')">Inscripciones</div>
-            <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_pagos.php')">Pagos</div>
+            <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_clientes.php');" id="clientes_carga_pagina">Clientes</div>
+            <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_inscripciones.php')" id="inscripcionDatos">Inscripciones</div>
+            <div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar('pantalla_pagos.php')" id="pagos_pagina">Pagos</div>
             <?php
 
 // Verificar si el usuario es 'root'

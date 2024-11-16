@@ -8,43 +8,45 @@ $texto = isset($_GET['texto']) ? $_GET['texto'] : ''; // Nuevo parámetro para e
 
 // Modificar la consulta SQL en función de los parámetros recibidos
 if (!empty($texto)) {
-    // Recuperar el CI y el ID de los clientes cuyos CI comienzan con el texto ingresado
-    $sql_clientes = "SELECT id_cliente, ci 
+    // Recuperar el CI, ID y estado de los clientes cuyos CI comienzan con el texto ingresado
+    $sql_clientes = "SELECT id_cliente, ci, estado 
                      FROM clientes 
                      WHERE ci LIKE '$texto%'";
 } else if (!empty($ci)) {
     // Si se ha recibido un CI exacto, hacer la consulta filtrando por ese CI
-    $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes 
+    $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes, estado 
                      FROM clientes 
                      WHERE ci = '$ci'";
 } else if (!empty($numero)) {
     switch ($numero) {
         case 1:
             // Seleccionar los clientes que tienen días restantes diferentes de 0
-            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes 
+            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes, estado 
                              FROM clientes 
-                             WHERE dias_restantes != 0";
+                             WHERE dias_restantes != 0  AND estado = 'activo'";
             break;
         case 2:
             // Seleccionar los clientes que tienen días restantes igual a 0
-            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes 
+            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes, estado 
                              FROM clientes 
-                             WHERE dias_restantes = 0";
+                             WHERE dias_restantes = 0 OR estado != 'activo'";
             break;
         case 3:
             // Seleccionar los clientes que tienen días restantes menores a 10
-            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes 
+            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes, estado 
                              FROM clientes 
                              WHERE dias_restantes < 10 AND dias_restantes > 0";
             break;
         default:
             // Si 'numero' no es 1, 2 o 3, seleccionar todos los clientes
-            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes FROM clientes";
+            $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes, estado 
+                             FROM clientes";
             break;
     }
 } else {
     // Si no se ha recibido un CI ni un número, buscar todos los clientes
-    $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes FROM clientes";
+    $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes, estado 
+                     FROM clientes";
 }
 
 // Ejecutar la consulta

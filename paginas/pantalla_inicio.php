@@ -3,16 +3,16 @@ include("../includes/inicio.php");
 ?>
 <div id="info-gym">
     <div id="info-usuarios">
-        <div class="datos-usuarios">
+        <div class="datos-usuarios" onclick="verUsuariosActivos()">
             <img src="img/iconos/usuarios.png" alt="usuarios" class="iconos">
-            <div style="margin: 15px;">
+            <div style="margin: 15px;" >
                 <span class="letra-especial">
                     <?php echo $row2['total_clientes_activos']; ?>
                 </span><br>
                 Usuarios Activos
             </div>
         </div>
-        <div class="datos-usuarios">
+        <div class="datos-usuarios" onclick="verUsuariosTotales()">
             <img src="img/iconos/usuarios-nuevos.png" alt="usuarios" class="iconos">
             <div style="margin: 15px;">
                 <span class="letra-especial">
@@ -29,7 +29,7 @@ include("../includes/inicio.php");
 if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {
     ?>
 
-<div id="info-ganancias">
+<div id="info-ganancias" onclick="verGananciasTotales()">
         Ganancias Totales
         <span class="letra-especial" style="color: black;">
             <?php echo $ganancias; ?> Bs.
@@ -57,7 +57,7 @@ if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {
                             <div class="renovacion-nombre"><?php echo $row4["nombre"]; ?></div>
                             <div class="renovacion-fecha">Días Restantes: <?php echo $row4["dias_restantes"]; ?></div>
                         </div>
-                        <a href="editar.php?id=<?php echo $row4["id_cliente"]; ?>" class="boton-renovacion">Renovar</a>
+                        <div onclick="renovacionDirecta(`<?php echo $row4['ci']; ?>`)" class="boton-renovacion">Renovar</div>
                     </div>
                 </li>
             <?php } ?>

@@ -18,6 +18,23 @@ $sql_suscripciones = "SELECT
                     JOIN clientes c ON s.id_cliente = c.id_cliente
                     JOIN planes_suscripcion p ON s.id_plan = p.id_plan";
 
+// Contenedor principal
+echo "<div style='display: flex; flex-direction: column; gap: 20px; align-items: center; padding: 20px; width:100%'>";
+
+// Contenedor del título y botón
+echo "<div style='display: flex; flex-direction: row; gap: 10px; align-items: center;'>";
+
+// Título con color y estilos adicionales
+echo "<h1 style='margin: 0; color: #08e6d1; font-family: Arial, sans-serif; font-size: 28px;'>Suscripciones</h1>";
+
+// Botón de imprimir
+echo "<a href='fpdf186/informe.php' style='background-color: #08e6d1; color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; text-align: center;'>Imprimir</a>";
+
+echo "</div>"; // Cerrar contenedor del título y botón
+
+// Contenedor de la tabla
+echo "<div style=`display: flex; justify-content: center; align-items: center; flex-grow: 1;`>";
+
 $result_suscripciones = $con->query($sql_suscripciones);
 
 if ($result_suscripciones->num_rows > 0) {
@@ -58,6 +75,9 @@ if ($result_suscripciones->num_rows > 0) {
 } else {
     echo "<h3 style='color: red;'>No hay suscripciones registradas.</h3>";
 }
+
+echo "</div>"; // Cerrar contenedor de la tabla
+echo "</div>"; // Cerrar contenedor principal
 
 // Cerrar la conexión a la base de datos
 $con->close();
