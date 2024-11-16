@@ -12,7 +12,8 @@
     <label for="ci">CI:</label>
     <input type="text" id="ci" name="ci" required><br>
 
-    <input type="submit" value="Insertar Cliente">
+    <input  type="submit" value="Insertar Cliente" class="buscar-largo3">
+    <button class= "cancelar" onclick= "cargar('pantalla_inscripciones.php')"> Cancelar </button>
 </form>
                 </div>
                 <div class="row_nuevo_suscripcion">

@@ -151,18 +151,114 @@ function eliminarUsuario(id) {
     }
 
 }
+
+function escribirTecla() {
+    // Recuperar el div donde se escribirán los resultados
+    var edicion = document.getElementById('edicion');
+
+    // Limpiar el contenido actual del div
+    edicion.innerHTML = "";
+
+    // Recuperar el texto actual ingresado en el input
+    var inputValue = document.getElementById('buscar_ci_clientes').value;
+
+    // Detectar si el input está vacío
+    if (!inputValue.trim()) {
+        console.log("El campo está vacío, no se realizará la búsqueda.");
+        return; // No hacer la búsqueda si el campo está vacío
+    }
+
+    console.log("Texto ingresado:", inputValue);
+
+    // Llamar a AJAX para la consulta en la base de datos
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "includes/clientes_consulta.php?texto=" + encodeURIComponent(inputValue), true);
+
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            try {
+                // Parsear la respuesta como JSON
+                var resultados = JSON.parse(ajax.responseText);
+
+                // Iterar sobre los resultados y crear los divs
+                resultados.forEach(function (cliente) {
+                    var nuevoDiv = document.createElement('div');
+                    nuevoDiv.style.width = "100%"; // Ancho completo
+                    nuevoDiv.style.padding = "10px"; // Espaciado interno
+                    nuevoDiv.style.marginBottom = "5px"; // Separación entre elementos
+                    nuevoDiv.style.backgroundColor = "#08e6d1"; // Fondo dinámico
+                    nuevoDiv.style.color = "black"; // Letras negras
+                    nuevoDiv.style.fontFamily = "'Arial', sans-serif"; // Tipografía bonita
+                    nuevoDiv.style.fontSize = "16px"; // Tamaño de fuente legible
+                    nuevoDiv.style.borderRadius = "5px"; // Bordes redondeados
+                    nuevoDiv.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.1)"; // Sombra suave
+
+                    nuevoDiv.innerText = ` ${cliente.ci}`; // Mostrar CI en el div
+                    nuevoDiv.style.cursor = "pointer"; // Agregar un puntero para indicar clickeable
+
+                    // Agregar el evento onclick
+                    nuevoDiv.setAttribute(
+                        "onclick",
+                        `seleccionadoPrediccion(${cliente.id_cliente}, '${cliente.ci}')`
+                    );
+
+                    // Agregar el nuevo div al contenedor
+                    edicion.appendChild(nuevoDiv);
+                });
+            } catch (e) {
+                console.error("Error procesando la respuesta:", e);
+            }
+        }
+    };
+
+    ajax.send(); // Enviar la solicitud AJAX
+}
+
+
+function seleccionadoPrediccion(id_cliente, ci) {
+    // Mostrar los valores seleccionados en la consola (opcional)
+    console.log("Cliente seleccionado:");
+    console.log("ID:", id_cliente);
+    console.log("CI:", ci);
+
+    document.getElementById('buscar_ci_clientes').value = ci;  // Actualizar el valor del input
+    buscarCliente()
+    // Aquí puedes agregar cualquier lógica adicional, como enviar estos datos a un servidor o realizar una nueva consulta
+}
+
+
+
 function buscarCliente() {
-    var buscar_ci = document.getElementById('buscar_ci_clientes').value;
-    console.log(buscar_ci);
+    var buscar_ci = document.getElementById('buscar_ci_clientes').value.trim();
+    var edicion = document.getElementById('edicion');
+
+    // Limpiar el contenido actual del div
+    edicion.innerHTML = "";
+
+    // Mostrar el texto ingresado en la consola
+    console.log("Buscando cliente con CI: " + buscar_ci);
+
+    // Realizar la solicitud AJAX
     var ajax = new XMLHttpRequest();
     ajax.open("GET", "includes/clientes_consulta.php?ci=" + buscar_ci, true);
 
     // Definir la función que se ejecutará cuando el estado de la solicitud cambie
-    ajax.onreadystatechange = function() {
+    ajax.onreadystatechange = function () {
         if (ajax.readyState == 4 && ajax.status == 200) {
             var clientes = JSON.parse(ajax.responseText);
-            var html = `
 
+            if (clientes.length === 0) {
+                // Si no hay resultados, mostrar mensaje en rojo
+                document.getElementById('tabla_clientes_contenedor').innerHTML = `
+                    <div style="color: red; font-size: 48px; text-align: center; font-family: 'Wild Wolf'; padding: 50px;">
+                        Ese cliente no existe
+                    </div>
+                `;
+                return; // Salir de la función si no hay clientes
+            }
+
+            // Construir la tabla si hay resultados
+            var html = `
                 <table id="tabla_clientes">
                     <thead>
                         <tr>
@@ -196,12 +292,13 @@ function buscarCliente() {
             });
 
             html += `</tbody></table>`;
-            document.getElementById('tabla_clientes_contenedor').innerHTML = html;  // Insertar el contenido generado en el div `lado_derecho_clientes`
+            document.getElementById('tabla_clientes_contenedor').innerHTML = html;  // Insertar el contenido generado
         }
     };
 
-    ajax.send();  // Enviar la solicitud AJAX
+    ajax.send(); // Enviar la solicitud AJAX
 }
+
 
 function flitroCliente(numero) {
     seleccionarFiltro(numero);
@@ -322,12 +419,12 @@ function planSeleccionado() {
     
     <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Precio:
-        <p style="color: white; margin: 5px 0;">$${response.precio}</p>
+        <p style="color: white; margin: 5px 0;">Bs${response.precio}</p>
     </h4>
     
     <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Duración:
-        <p id="duracion" style="color: white; margin: 5px 0;">${response.duracion}</p> días
+        <p id="duracion" style="color: white; margin: 5px 0;">${response.duracion} días </p> 
     </h4>
     
     <select id="tipo_pago" style="padding: 10px; width: 100%; font-family: Arial, sans-serif;">
@@ -352,39 +449,53 @@ function planSeleccionado() {
 
 function crearCliente() {
     // Recuperar los datos del formulario del cliente
-    var nombre = document.getElementById('nombre').value;
-    var telefono = document.getElementById('telefono').value;
-    var ci = document.getElementById('ci').value;
+    var nombre = document.getElementById('nombre').value.trim();
+    var telefono = document.getElementById('telefono').value.trim();
+    var ci = document.getElementById('ci').value.trim();
+    var duracion = parseInt(document.getElementById('duracion').innerHTML); // Convertir la duración a entero
+    var id_plan = parseInt(document.getElementById('id_plan').innerHTML); // Convertir el id_plan a entero
+    var tipoPago = document.getElementById('tipo_pago').value.trim();
+    var alerta = document.getElementById('alerta'); // Div para mostrar alertas
 
-    // Recuperar la duración del plan (como un número entero) y el tipo de pago
-    var duracion = parseInt(document.getElementById('duracion').innerHTML);  // Convertir la duración a entero
-    var id_plan = parseInt(document.getElementById('id_plan').innerHTML);  // Convertir la duración a entero
-    var tipoPago = document.getElementById('tipo_pago').value;
+    // Limpiar el mensaje de alerta previo
+    alerta.innerHTML = "";
+
+    // Validar campos obligatorios
+    if (!nombre || !telefono || !ci || !duracion || !id_plan || !tipoPago) {
+        alerta.innerHTML = `<p style="color: red; font-weight: bold;">Debe llenar todos los campos.</p>`;
+        return; // Salir de la función si hay campos vacíos
+    }
+
     console.log("Duración del plan:", duracion);
     console.log("Id del plan:", id_plan);
+
     // Crear un objeto FormData para enviar los datos
     var formData = new FormData();
     formData.append('nombre', nombre);
     formData.append('telefono', telefono);
     formData.append('ci', ci);
-    formData.append('duracion', duracion); 
-    formData.append('id_plan', id_plan);  // Duración ya convertida a número entero
+    formData.append('duracion', duracion);
+    formData.append('id_plan', id_plan);
     formData.append('tipo_pago', tipoPago);
 
     // Crear la solicitud AJAX para enviar los datos al servidor
     var ajax = new XMLHttpRequest();
     ajax.open("POST", "includes/crear_cliente.php", true);
-    ajax.onreadystatechange = function() {
+    ajax.onreadystatechange = function () {
         if (ajax.readyState == 4 && ajax.status == 200) {
             // Manejar la respuesta del servidor
             alert('Cliente creado exitosamente');
             console.log(ajax.responseText); // Imprimir la respuesta para depuración
+            var volatil = document.getElementById('inicio');
+            seleccionar(volatil);
+            cargar('pantalla_inicio.php');
         }
     };
 
     // Enviar los datos del formulario
     ajax.send(formData);
 }
+
 
 function NuevoClienteSuscripcion(){
     var contenido = document.getElementById('Contenido_pagian');
@@ -423,8 +534,9 @@ function RenovarSuscripcion(){
 
 function buscarClienteRenovacion() {
     var id = document.getElementById('buscar_id').value;
+    var edicion = document.getElementById('edicion');
     console.log("Buscar cliente con ID " + id);
-
+    edicion.innerHTML = "";
     // Hacer una petición AJAX para obtener el formulario de edición
     var ajax = new XMLHttpRequest();
     ajax.open("GET", "includes/clientes_editar_renovar.php?id=" + id, true);
@@ -437,7 +549,7 @@ function buscarClienteRenovacion() {
             if (response.includes("No existe ningún cliente")) {
                 // Si no se encuentra el cliente, agregamos el mensaje al final del contenido actual
                 var infoRenovacion = document.getElementById('Info_Renovacion');
-                infoRenovacion.innerHTML += "<p style='color: red;'>No existe ningún cliente con ese CI.</p>";
+                infoRenovacion.innerHTML += "<p style='color: red; id=`mensajePeligroso`'>No existe ningún cliente con ese CI.</p>";
             } else {
                 // Si se encuentra el cliente, reemplazamos el contenido con el formulario
                 document.getElementById('Info_Renovacion').innerHTML = response;
@@ -446,6 +558,99 @@ function buscarClienteRenovacion() {
     };
     ajax.send();
 }
+
+
+
+
+
+function seleccionadoPrediccionBuscada(id_cliente, ci) {
+    // Mostrar los valores seleccionados en la consola (opcional)
+    console.log("Cliente seleccionado:");
+    console.log("ID:", id_cliente);
+    console.log("CI:", ci);
+
+    document.getElementById('buscar_id').value = ci;  // Actualizar el valor del input
+    buscarClienteRenovacion()
+    // Aquí puedes agregar cualquier lógica adicional, como enviar estos datos a un servidor o realizar una nueva consulta
+}
+
+
+
+function autocompletarClienteRenovacion() {
+    // Recuperar el div donde se escribirán los resultados
+    var edicion = document.getElementById('edicion');
+
+    // Limpiar el contenido actual del div
+    edicion.innerHTML = "";
+
+    // Recuperar el texto actual ingresado en el input
+    var inputValue = document.getElementById('buscar_id').value;
+
+    // Detectar si el input está vacío
+    if (!inputValue.trim()) {
+        console.log("El campo está vacío, no se realizará la búsqueda.");
+        return; // No hacer la búsqueda si el campo está vacío
+    }
+
+    console.log("Texto ingresado:", inputValue);
+
+    // Llamar a AJAX para la consulta en la base de datos
+    var ajax = new XMLHttpRequest();
+    ajax.open("GET", "includes/clientes_consulta.php?texto=" + encodeURIComponent(inputValue), true);
+
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            try {
+                // Parsear la respuesta como JSON
+                var resultados = JSON.parse(ajax.responseText);
+                if (document.getElementById('mensajePeligroso')) {
+                    document.getElementById('mensajePeligroso').innerHTML = ""; // Limpiar el contenido del elemento
+                }
+                // Iterar sobre los resultados y crear los divs
+                resultados.forEach(function (cliente) {
+                    var nuevoDiv = document.createElement('div');
+                    nuevoDiv.style.width = "80%"; // Ancho completo
+                    nuevoDiv.style.padding = "10px"; // Espaciado interno
+                    nuevoDiv.style.marginBottom = "5px"; // Separación entre elementos
+                    nuevoDiv.style.backgroundColor = "rgba(8, 230, 219, 0.67)"; // Fondo dinámico
+                    nuevoDiv.style.color = "black"; // Letras negras
+                    nuevoDiv.style.fontFamily = "'Arial', sans-serif"; // Tipografía bonita
+                    nuevoDiv.style.fontSize = "16px"; // Tamaño de fuente legible
+                    nuevoDiv.style.borderRadius = "5px"; // Bordes redondeados
+                    nuevoDiv.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.1)"; // Sombra suave
+
+                    nuevoDiv.innerText = ` ${cliente.ci}`; // Mostrar CI en el div
+                    nuevoDiv.style.cursor = "pointer"; // Agregar un puntero para indicar clickeable
+
+                    // Agregar el evento onclick
+                    nuevoDiv.setAttribute(
+                        "onclick",
+                        `seleccionadoPrediccionBuscada(${cliente.id_cliente}, '${cliente.ci}')`
+                    );
+
+                    // Agregar el nuevo div al contenedor
+                    edicion.appendChild(nuevoDiv);
+                });
+            } catch (e) {
+                console.error("Error procesando la respuesta:", e);
+            }
+        }
+    };
+
+    ajax.send(); // Enviar la solicitud AJAX
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function nuevaInscripcionCliente() {

@@ -30,7 +30,7 @@ $ganancias = $row3['total_ganancias'] ?? 0;
 // Consulta de clientes cuyas suscripciones vencen en los próximos 10 días y mayores a 0
 $sql_vencimientos = "SELECT id_cliente, nombre, dias_restantes
         FROM clientes 
-        WHERE dias_restantes < 10 AND dias_restantes > 0";
+        WHERE dias_restantes < 100 AND dias_restantes > 0";
 $result_vencimientos = $con->query($sql_vencimientos);
 
 // Cerrar la conexión se hará en el archivo que lo incluye.

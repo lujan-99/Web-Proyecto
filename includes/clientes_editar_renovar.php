@@ -47,9 +47,10 @@ if ($result->num_rows > 0) {
 
 
     <!-- Botón independiente para nueva inscripción -->
-    <button type="button" onclick="nuevaInscripcionCliente()" style="background-color: #08e6d1; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">
+    <button type="button" onclick="nuevaInscripcionCliente()" id="buscar-largo2">
         Nueva Inscripción
     </button>
+    <button class= "cancelar" onclick= "cargar('pantalla_inscripciones.php')"> Cancelar </button>
 
 <?php
 } else {

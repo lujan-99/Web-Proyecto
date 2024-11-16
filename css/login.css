@@ -8,27 +8,27 @@
 }
 
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0); /* Negro unificado */
 }
-#caja-login {
 
+#caja-login {
     max-width: 400px;
     margin: 0 auto;
     margin-top: 100px;
     padding: 20px;
-    border: 1px solid rgb(8, 230, 219);
+    border: 1px solid rgb(8, 230, 219); /* Color unificado */
     border-radius: 5px;
-    background-color: #000000;
+    background-color: rgb(0, 0, 0); /* Negro unificado */
 }
 
 .entradas {
     margin: 15px;
 }
 
-.boton{
-    background-color: rgb(8, 230, 219);
+.boton {
+    background-color: rgb(8, 230, 219); /* Color unificado */
     font-family: 'Normal';
-    color: #000000;
+    color: rgb(0, 0, 0); /* Negro unificado */
     border: none;
     padding: 10px 15px;
     border-radius: 4px;
@@ -37,8 +37,8 @@ body {
     margin-right: 10px;
 }
 
-input{
-    color: white;
+input {
+    color: rgb(255, 255, 255); /* Blanco unificado */
     width: 90%;
     padding: 10px 15px;
     border-radius: 4px;
@@ -46,32 +46,34 @@ input{
     cursor: pointer;
     margin-right: 10px;
     margin-top: 10px;
-    background-color:  rgba(8, 250, 181, 0.425);
+    background-color: rgba(8, 230, 219, 0.42); /* Color ajustado para consistencia */
 }
-#botones{
+
+#botones {
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#titulo{
+#titulo {
     text-align: center;
     font-size: 32px;
-    font-family:"Wild Wolf";
+    font-family: "Wild Wolf";
     /* font-weight: bold; */
-    color:  rgb(8, 230, 219);
+    color: rgb(8, 230, 219); /* Color unificado */
     margin-bottom: 20px;
 }
-label{
+
+label {
     font-family: 'Normal';
     font-size: 16px;
     /* font-weight: bold; */
-    color: rgb(8, 230, 219);
+    color: rgb(8, 230, 219); /* Color unificado */
 }
-/* declaraos el id mensaje  */
-#mensaje{
-    color: red;
+
+#mensaje {
+    color: rgb(255, 0, 0); /* Rojo unificado */
     font-family: 'Normal';
     font-size: 16px;
     text-align: center;

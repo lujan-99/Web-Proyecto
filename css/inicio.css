@@ -423,3 +423,64 @@ select {
     margin-top: 20px; /* Espacio antes del select */
     width: 100%; /* Ancho completo para ocupar el contenedor */
 }
+
+
+.cancelar {
+    font-family: 'Wild Wolf'; /* Fuente personalizada */
+    margin: 10px auto; /* Centrar horizontalmente con espacio entre elementos */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background-color: rgb(224, 47, 47); /* Fondo azul verdoso */
+    color: rgb(0, 0, 0); /* Texto negro */
+    font-size: 28px; /* Tamaño de fuente grande */
+    cursor: pointer; /* Cambiar cursor a "mano" */
+    text-align: center; /* Centrar texto */
+    width: 90%; /* Ancho completo del contenedor */
+}
+
+#buscar-largo{
+    font-family: 'Wild Wolf'; /* Fuente personalizada */
+    margin: 10px auto; /* Centrar horizontalmente con espacio entre elementos */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background-color: rgb(8, 230, 219); /* Fondo azul verdoso */
+    color: rgb(0, 0, 0); /* Texto negro */
+    font-size: 28px; /* Tamaño de fuente grande */
+    cursor: pointer; /* Cambiar cursor a "mano" */
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Espaciado superior */
+    width: 90%; /* Ancho del 90% del contenedor */
+
+    
+}
+
+#buscar-largo2{
+    font-family: 'Wild Wolf'; /* Fuente personalizada */
+    margin: 10px auto; /* Centrar horizontalmente con espacio entre elementos */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background-color: rgb(8, 230, 219); /* Fondo azul verdoso */
+    color: rgb(0, 0, 0); /* Texto negro */
+    font-size: 28px; /* Tamaño de fuente grande */
+    cursor: pointer; /* Cambiar cursor a "mano" */
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Espaciado superior */
+    width: 90%; /* Ancho del 90% del contenedor */
+
+    
+}
+.buscar-largo3{
+    font-family: 'Wild Wolf'; /* Fuente personalizada */
+    margin: 10px auto; /* Centrar horizontalmente con espacio entre elementos */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    background-color: rgb(8, 230, 219); /* Fondo azul verdoso */
+    color: rgb(0, 0, 0); /* Texto negro */
+    font-size: 28px; /* Tamaño de fuente grande */
+    cursor: pointer; /* Cambiar cursor a "mano" */
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Espaciado superior */
+    width: 90%; /* Ancho del 90% del contenedor */
+
+    
+}

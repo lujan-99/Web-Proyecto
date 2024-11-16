@@ -18,12 +18,12 @@ include("../includes/inicio.php");
                 <span class="letra-especial">
                     <?php echo $row1['total_inscripciones']; ?>
                 </span><br>
-                Usuarios Nuevos
+                Usuarios Totales
             </div>
         </div>
     </div>
     <?php
-session_start(); // Asegúrate de que la sesión esté iniciada
+//session_start(); // Asegúrate de que la sesión esté iniciada
 
 // Verificar si el usuario es 'root'
 if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {

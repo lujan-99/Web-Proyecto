@@ -17,11 +17,12 @@ function login() {
                 // Mostrar mensaje de éxito si el login es correcto
                 
                 mensajeError.innerText = "Inicio de sesión exitoso. Redirigiendo...";
-                
+                mensajeError.style.color = "rgb(0, 255, 76)"; // Verde lechuga chillante
+
                 // Redirigir después de un corto delay
                 setTimeout(function() {
                     window.location.href = "inicio.php";
-                }, 2000);
+                }, 1000);
             }
         }
     };

@@ -1,13 +1,19 @@
 <?php 
 include("conexion.php");
 
-// Verificar si se ha recibido un CI como parámetro por GET
+// Verificar si se han recibido parámetros por GET
 $ci = isset($_GET['ci']) ? $_GET['ci'] : '';
 $numero = isset($_GET['numero']) ? $_GET['numero'] : '';
+$texto = isset($_GET['texto']) ? $_GET['texto'] : ''; // Nuevo parámetro para el texto
 
-// Modificar la consulta SQL en función de si se recibe un CI o un número
-if (!empty($ci)) {
-    // Si se ha recibido un CI, hacer la consulta filtrando por ese CI
+// Modificar la consulta SQL en función de los parámetros recibidos
+if (!empty($texto)) {
+    // Recuperar el CI y el ID de los clientes cuyos CI comienzan con el texto ingresado
+    $sql_clientes = "SELECT id_cliente, ci 
+                     FROM clientes 
+                     WHERE ci LIKE '$texto%'";
+} else if (!empty($ci)) {
+    // Si se ha recibido un CI exacto, hacer la consulta filtrando por ese CI
     $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes 
                      FROM clientes 
                      WHERE ci = '$ci'";
@@ -41,6 +47,7 @@ if (!empty($ci)) {
     $sql_clientes = "SELECT id_cliente, nombre, telefono, ci, fecha_registro, dias_restantes FROM clientes";
 }
 
+// Ejecutar la consulta
 $result_clientes = $con->query($sql_clientes);
 
 $datos = array();

@@ -3,8 +3,10 @@
     <div class="row_nuevo_suscripcion">
         <h2 style="color: white;">Buscar CLiente</h2>
         <div id="Info_Renovacion">
-        <button  onclick="buscarClienteRenovacion()">Buscar:</button>
-        <input type="number" id="buscar_id" name="buscar"><br>
+        <button class= "cancelar" onclick= "cargar('pantalla_inscripciones.php')"> Cancelar </button>
+        <button id="buscar-largo" onclick="buscarClienteRenovacion()">Buscar:</button>
+        <input style=" width: 95%; height: 30px;" type="number" id="buscar_id" name="buscar" oninput="autocompletarClienteRenovacion(event)"><br>
+        <div id="edicion"></div>
         </div>
         <!-- Reemplazado el formulario por un checkbox -->
         
@@ -16,7 +18,7 @@
 
         echo '<select name="plan_suscripcion" id="plan_suscripcion" onchange="planSeleccionado();">';
         while ($row = $result->fetch_assoc()) {
-            echo '<option value="' . $row['id_plan'] . '">' . $row['nombre_plan'] . ' - $' . $row['precio'] . '</option>';
+            echo '<option value="' . $row['id_plan'] . '">' . $row['nombre_plan'] . ' - Bs' . $row['precio'] . '</option>';
         }
         echo '</select>';
 
