@@ -16,8 +16,8 @@ function cargar(url) {
 // Función que se ejecuta cuando el mouse pasa sobre el div
 function hover(element) {
     if (element !== seleccionado) {  // Solo aplica hover si no está seleccionado
-        element.style.backgroundColor = "rgba(8, 230, 219, 0.496)";  // Cambia el color de fondo al pasar el mouse
-        element.style.color = "white";  // Cambia el color del texto
+        element.style.backgroundColor = "var(--color-cian-claro)";  // Cambia el color de fondo al pasar el mouse
+        element.style.color = "var(--color-blanco)";  // Cambia el color del texto
     }
 }
 
@@ -38,8 +38,8 @@ function seleccionar(element) {
     }
 
     // Selecciona el nuevo elemento
-    element.style.backgroundColor = "rgb(8, 230, 219)";  // Color de fondo para el elemento seleccionado
-    element.style.color = "black";  // Cambia el color del texto
+    element.style.backgroundColor = "var(--color-cian-claro)";  // Color de fondo para el elemento seleccionado
+    element.style.color = "var(--color-negro)";  // Cambia el color del texto
 
 
     // Actualiza la variable 'seleccionado' para almacenar el nuevo elemento seleccionado
@@ -200,8 +200,8 @@ function escribirTecla(event) {
                     nuevoDiv.style.width = "100%"; // Ancho completo
                     nuevoDiv.style.padding = "10px"; // Espaciado interno
                     nuevoDiv.style.marginBottom = "5px"; // Separación entre elementos
-                    nuevoDiv.style.backgroundColor = "#08e6d1"; // Fondo dinámico
-                    nuevoDiv.style.color = "black"; // Letras negras
+                    nuevoDiv.style.backgroundColor = "var(--color-cian-pastel)"; // Fondo dinámico
+                    nuevoDiv.style.color = "var(--color-negro)"; // Letras negras
                     nuevoDiv.style.fontFamily = "'Arial', sans-serif"; // Tipografía bonita
                     nuevoDiv.style.fontSize = "16px"; // Tamaño de fuente legible
                     nuevoDiv.style.borderRadius = "5px"; // Bordes redondeados
@@ -399,8 +399,8 @@ function seleccionarFiltro(numero_filtro) {
     // Verifica si el filtro_cuadro existe
     if (filtro_cuadro) {
         // Selecciona el nuevo elemento 
-        filtro_cuadro.style.backgroundColor = "rgb(8, 230, 219)";  // Color de fondo para el elemento seleccionado
-        filtro_cuadro.style.color = "black";  // Cambia el color del texto
+        filtro_cuadro.style.backgroundColor = "var(--color-cian-claro)";  // Color de fondo para el elemento seleccionado
+        filtro_cuadro.style.color = "var(--color-negro)";  // Cambia el color del texto
 
         // Actualiza la variable 'filtro' para almacenar el nuevo elemento seleccionado
         filtro = filtro_cuadro;
@@ -431,31 +431,31 @@ function planSeleccionado() {
                     // Mostrar los detalles del plan en HTML
                     document.getElementById('detalle_plan').innerHTML = `
                         <div style="padding: 20px;">
-    <h3 style="color: white; font-family: Arial, sans-serif; font-size: 24px; text-align: center;">Detalles del Plan</h3>
+    <h3 style="color: var(--color-blanco); font-family: Arial, sans-serif; font-size: 24px; text-align: center;">Detalles del Plan</h3>
     
-    <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
+    <h4 style="color: var(--color-cian-pastel); font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Nombre del Plan:
-        <p style="color: white; margin: 5px 0;">${response.nombre_plan}</p>
+        <p style="color: var(--color-blanco); margin: 5px 0;">${response.nombre_plan}</p>
     </h4>
     
-    <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
+    <h4 style="color: var(--color-cian-pastel); font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Id del Plan:
-        <p id="id_plan" style="color: white; margin: 5px 0;">${response.id_plan}</p>
+        <p id="id_plan" style="color: var(--color-blanco); margin: 5px 0;">${response.id_plan}</p>
     </h4>
     
-    <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
+    <h4 style="color: var(--color-cian-pastel); font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Descripción:
-        <p style="color: white; margin: 5px 0;">${response.descripcion}</p>
+        <p style="color: var(--color-blanco); margin: 5px 0;">${response.descripcion}</p>
     </h4>
     
-    <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
+    <h4 style="color: var(--color-cian-pastel); font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Precio:
-        <p style="color: white; margin: 5px 0;">Bs${response.precio}</p>
+        <p style="color: var(--color-blanco); margin: 5px 0;">Bs${response.precio}</p>
     </h4>
     
-    <h4 style="color: #08e6d1; font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
+    <h4 style="color: var(--color-cian-pastel); font-family: Arial, sans-serif; font-size: 18px; margin-bottom: 10px;">
         Duración:
-        <p id="duracion" style="color: white; margin: 5px 0;">${response.duracion} días </p> 
+        <p id="duracion" style="color: var(--color-blanco); margin: 5px 0;">${response.duracion} días </p> 
     </h4>
     
     <select id="tipo_pago" style="padding: 10px; width: 100%; font-family: Arial, sans-serif;">
@@ -644,7 +644,7 @@ function autocompletarClienteRenovacion() {
                     nuevoDiv.style.padding = "10px"; // Espaciado interno
                     nuevoDiv.style.marginBottom = "5px"; // Separación entre elementos
                     nuevoDiv.style.backgroundColor = "rgba(8, 230, 219, 0.67)"; // Fondo dinámico
-                    nuevoDiv.style.color = "black"; // Letras negras
+                    nuevoDiv.style.color = "var(--color-negro)"; // Letras negras
                     nuevoDiv.style.fontFamily = "'Arial', sans-serif"; // Tipografía bonita
                     nuevoDiv.style.fontSize = "16px"; // Tamaño de fuente legible
                     nuevoDiv.style.borderRadius = "5px"; // Bordes redondeados
@@ -947,3 +947,18 @@ function renovacionDirecta(ci_cliente) {
     
 
 }
+
+        // Función para simular el clic al cargar la página
+        window.onload = function () {
+            const elemento = document.getElementById("inicio");
+            if (elemento) {
+                elemento.click(); // Simula el clic
+            }
+        };
+
+        function cambiarColorEstilo() {
+            // Obtener el valor seleccionado
+            var color = document.getElementById('tema').value;
+            // Cambiar el href del link con id "estilosCambio"
+            document.getElementById('estilosCambio').setAttribute('href', 'css/inicio' + color + '.css?v=1.0');
+        }

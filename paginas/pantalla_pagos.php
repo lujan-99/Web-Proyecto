@@ -25,10 +25,10 @@ echo "<div style='display: flex; flex-direction: column; gap: 20px; align-items:
 echo "<div style='display: flex; flex-direction: row; gap: 10px; align-items: center;'>";
 
 // Título con color y estilos adicionales
-echo "<h1 style='margin: 0; color: #08e6d1; font-family: Arial, sans-serif; font-size: 28px;'>Suscripciones</h1>";
+echo "<h1 style='margin: 0; color:var(--color-cian-claro); font-family: Arial, sans-serif; font-size: 28px;'>Suscripciones</h1>";
 
 // Botón de imprimir
-echo "<a href='fpdf186/informe.php' style='background-color: #08e6d1; color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; text-align: center;'>Imprimir</a>";
+echo "<a href='fpdf186/informe.php' style='background-color: var(--color-cian-claro:); color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; text-align: center;'>Imprimir</a>";
 
 echo "</div>"; // Cerrar contenedor del título y botón
 

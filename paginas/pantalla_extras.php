@@ -45,7 +45,7 @@ if ($result_planes->num_rows > 0) {
     echo "</tbody>";
     echo "</table>";
 } else {
-    echo "<h3 style='color: red;'>No hay planes de suscripción registrados.</h3>";
+    echo "<h3 style='color: var(--color-rojo-intenso);'>No hay planes de suscripción registrados.</h3>";
 }
 
 // Botón para añadir un nuevo plan

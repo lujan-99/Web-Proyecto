@@ -8,19 +8,19 @@
 }
 :root {
     /* Variables para los colores */
-    --color-negro: rgb(255, 255, 255);
-    --color-cian-claro: rgb(8, 230, 219);   
-    --color-blanco: rgb(0, 0, 0);
+    --color-negro: rgb(0, 0, 0);
+    --color-cian-claro: rgb(8, 230, 219);
+    --color-blanco: rgb(255, 255, 255);
     --color-rojo-intenso: rgb(229, 48, 48);
     --color-verde-claro: #5fe71b;
     --color-verde-oscuro: rgb(2, 154, 81);
-    --color-verde-azulado: rgb(8, 230, 219);
+    --color-verde-azulado: rgb(0, 152, 144);
     --color-rojo-brillante: rgb(255, 18, 18);
     --color-negro-translucido: #333333a9;
     --color-verde-lima: lime;
     --color-verde: #0f0;
-    --color-gris-claro: #4e4e4e;
-    --color-cian-pastel: rgb(8, 230, 219);
+    --color-gris-claro: #cccccc;
+    --color-cian-pastel: #08e6d1;
     --color-rojo-transparente: rgba(255, 0, 0, 0);
     --color-gris-oscuro: rgb(77, 70, 70);
     --color-rojo-oscuro: rgb(224, 47, 47);

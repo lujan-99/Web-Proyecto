@@ -6,8 +6,29 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="css/inicio.css">
-        <script src="js/inicio.js" type="text/javascript"></script>
+        <?php
+// Variable para determinar el estilo seleccionado
+$tema = $_SESSION['nivel'];
+
+// Determina el archivo CSS a cargar según el tema
+$archivoCss = '';
+switch ($tema) {
+    case 'Empleado':
+        $archivoCss = 'inicio-dark.css';
+        break;
+    case 'Privilegiado':
+        $archivoCss = 'inicio-arcoiris.css';
+        break;
+    case 'Cliente':
+        $archivoCss = 'inicio-blanconegro.css';
+        break;
+    case 'root':
+        $archivoCss = 'inicio.css';
+        break;
+}
+?>
+        <link rel="stylesheet" href="css/<?php echo $archivoCss; ?>?v=1.0" id="estilosCambio">
+
         
     </head>
 
@@ -20,7 +41,14 @@
                 </div>
             </div>
             <div>
-                <div>Fecha</div>
+                <div>
+                    <select name="tema" id="tema" onchange="cambiarColorEstilo()">
+                        <option value="" <?php echo $tema === 'root' ? 'selected' : ''; ?>>Claro</option>
+                        <option value="-arcoiris" <?php echo $tema === 'Empleado' ? 'selected' : ''; ?>>Arcoiris</option>
+                        <option value="-blanconegro" <?php echo $tema === 'Privilegiado' ? 'selected' : ''; ?>>Blanco Negro</option>
+                        <option value="-dark" <?php echo $tema === 'Cliente' ? 'selected' : ''; ?>>Oscuro</option>
+                    </select>
+                </div>
                 <a href="includes/cerrar.php">
                     <div id="cerrar-sesion">Botón de cierre</div>
                 </a>
@@ -48,13 +76,10 @@ if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {
             <div id="contenedor" styel="padding-top: 50px;">
             <link rel="stylesheet" href="css/index.css">
 
-        <div id="textos">
-            <div id="texto-logo">Equilibrium Wellness Club</div>
-            <div id="texto-complementario">Software de Gestion</div>
-        </div>
+        
     </div>
             <!-- ------------------------------------------------------------------------------------------------------ -->
         </div>
-        
+        <script src="js/inicio.js" type="text/javascript"></script>
     </body>
 </html>

@@ -6,65 +6,65 @@
     font-family: 'Normal';
     src: url('../fonts/BebasNeue-Regular.ttf') format('truetype');
 }
-#logo{
-    width: 150px;
-    height:150px;
-    /* margin: 0 auto; */
-}
 
-#contenedor{
-    
+/* Estilos para el contenedor principal */
+#pagina-principal #contenedor {
     width: 100%;
     padding-top: 200px;
     display: flex;
     margin: auto 0;
     justify-content: center;
     align-items: center;
-
 }
-    
-#texto-logo{
-    color: rgb(8, 230, 219);;
+
+#pagina-principal #logo-principal {
+    width: 150px;
+    height: 150px;
+}
+
+#pagina-principal #textos-principales {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pagina-principal #texto-logo-principal {
+    color: rgb(0, 128, 128);
     padding: 20px;
     font-family: 'Wild Wolf', sans-serif;
     font-size: 64px;
     text-align: center;
     margin-top: 10px;
 }
-#textos{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-}
-#texto-complementario{
-    color: rgb(255, 255, 255);
+
+#pagina-principal #texto-complementario-principal {
+    color: rgb(200, 200, 200);
     font-family: "Normal", sans-serif;
     font-size: 24px;
     text-align: center;
-
 }
 
-a {
+/* Enlace y botón de login */
+#pagina-principal #link-login {
     text-decoration: none; /* Elimina el subrayado del enlace */
 }
 
-#boton {
+#pagina-principal #boton-login {
     width: 150px;
-    background-color: rgb(8, 230, 219);
+    background-color: rgb(0, 128, 128);
     color: rgb(0, 0, 0);
     padding: 15px 20px;
     border-radius: 5px;
     font-size: 24px;
-    /* font-weight: bold; */
     text-align: center;
     font-family: 'Normal';
-    margin: 10px auto; /* Auto margenes horizontales para centrar */
+    margin: 10px auto;
     margin-top: 30px;
     cursor: pointer;
 }
 
-body {
+/* Fondo de la página */
+#pagina-principal {
     background-color: rgb(0, 0, 0);
 }

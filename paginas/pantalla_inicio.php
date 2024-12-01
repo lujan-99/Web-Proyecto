@@ -43,7 +43,7 @@ if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {
 </div>
 
 <div style="width: 50%; display: flex; flex-direction: column; align-items: center;">
-    <div style="color:red; margin: 20px; font-size: 40px;">
+    <div style="color:var(--color-rojo-intenso); margin: 20px; font-size: 40px;">
         Vencen este mes
     </div>
     
@@ -63,7 +63,7 @@ if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {
             <?php } ?>
         </ul>
     <?php } else { ?>
-        <div style='color: rgb(8, 230, 219); font-size: 24px;'>No hay vencimientos este mes.</div>
+        <div style='color: var(--color-cian-claro:); font-size: 24px;'>No hay vencimientos este mes.</div>
         <img src='img/iconos/bien.png' style='width: 320px; padding:15px;'>
     <?php } ?>
     

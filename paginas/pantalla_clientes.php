@@ -20,7 +20,7 @@
             <div class="filtro_cuadro_clientes" onclick="flitroCliente(2)" id="filtro_2">Filtrar por Inactivos</div>
             <div class="filtro_cuadro_clientes" onclick="flitroCliente(3)" id="filtro_3">Filtrar por Próximos a Vencer</div>
             <div class="filtro_cuadro_clientes" onclick="flitroCliente(4)" id="filtro_4">Todos</div>
-            <a href='fpdf186/clientes.php' style='background-color:rgb(231, 9, 9); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; text-align: center;'>Imprimir</a>
+            <a href='fpdf186/clientes.php' style='background-color:var(--color-rojo-intenso); color: var(--color-blanco); padding: 10px 20px; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; text-align: center;'>Imprimir</a>
         </div>
         
         <div id="tabla_clientes_contenedor">

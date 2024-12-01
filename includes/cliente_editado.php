@@ -22,9 +22,9 @@ $sql = "UPDATE clientes SET
 $result = $con->query($sql);
 
 if ($result) {
-    echo "<div style='color: rgb(8, 230, 219); font-family: Wild Wolf; font-size: 32px; padding-top: 40px;text-align: center;'>Cliente actualizado con éxito.</div><img src='img/iconos/bien.png' style='width: 320px; padding:15px;'>";
+    echo "<div style='color: var(--color-cian-claro); font-family: Wild Wolf; font-size: 32px; padding-top: 40px;text-align: center;'>Cliente actualizado con éxito.</div><img src='img/iconos/bien.png' style='width: 320px; padding:15px;'>";
 } else {
-    echo "<div style='color: rgb(8, 230, 219); font-family: Wild Wolf; font-size: 32px; padding-top: 40px;text-align: center;'>Error al actualizar el cliente: " . $con->error . "</div><img src='img/iconos/bien.png' style='width: 320px; padding:15px;'>";
+    echo "<div style='color: var(--color-cian-claro); font-family: Wild Wolf; font-size: 32px; padding-top: 40px;text-align: center;'>Error al actualizar el cliente: " . $con->error . "</div><img src='img/iconos/bien.png' style='width: 320px; padding:15px;'>";
 }
 
 // Cerrar la conexión a la base de datos
