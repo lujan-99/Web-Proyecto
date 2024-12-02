@@ -66,6 +66,7 @@ switch ($tema) {
 if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'root') {
     // Si el usuario es 'root', imprimir el contenido
     echo '<div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar(\'pantalla_extras.php\')">Extras</div>';
+    echo '<div class="opcion-menu" onmouseover="hover(this)" onmouseout="unhover(this)" onclick="seleccionar(this); cargar(\'pantalla_graficas.php\')">Graficas</div>';
 }
 ?>
         </div>

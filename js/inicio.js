@@ -489,7 +489,7 @@ function crearCliente() {
     var alerta = document.getElementById('alerta'); // Div para mostrar alertas
 
     // Limpiar el mensaje de alerta previo
-    alerta.innerHTML = "";
+    // alerta.innerHTML = "";
 
     // Validar campos obligatorios
     if (!nombre || !telefono || !ci || !duracion || !id_plan || !tipoPago) {
@@ -962,3 +962,25 @@ function renovacionDirecta(ci_cliente) {
             // Cambiar el href del link con id "estilosCambio"
             document.getElementById('estilosCambio').setAttribute('href', 'css/inicio' + color + '.css?v=1.0');
         }
+
+
+
+        function updateImageSrc(selectId, imgId, link) {
+            const img = document.getElementById(imgId);
+            const select = document.getElementById(selectId);
+        
+            // Obtener el valor seleccionado
+            const selectedValue = select.value;
+        
+            // Base de la URL de la imagen
+            const baseSrc = link;
+            console.log("Base de la URL de la imagen:", baseSrc);
+            // Actualizar el src con el parámetro GET si se selecciona una opción válida
+            if (selectedValue !== "nochance") {
+                img.src = `${baseSrc}?option=${selectedValue}`;
+                console.log("Nueva URL de la imagen:", img.src);
+            } else {
+                img.src = baseSrc; // Restaurar la URL base si no hay selección válida
+            }
+        }
+        
